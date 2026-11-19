@@ -1,22 +1,3 @@
-/**
- * shamiltp.me — Interactive Inquiry Ticket / Pass API (Cloudflare Worker + D1)
- * Stack: Cloudflare Workers + Hono + Cloudflare D1 (SQLite) + Web Crypto API
- *
- * Dependencies:
- *   npm install hono
- *   npm install -D wrangler
- *
- * Setup & Deploy:
- *   1. npx wrangler d1 create shamiltp-tickets
- *   2. Copy the returned database_id into wrangler.toml
- *   3. npx wrangler d1 execute shamiltp-tickets --remote --file=./schema.sql
- *   4. Set secrets:
- *        npx wrangler secret put N8N_API_KEY
- *        npx wrangler secret put ADMIN_API_KEY
- *        npx wrangler secret put DISCORD_WEBHOOK_URL
- *   5. npx wrangler deploy
- */
-
 import { Hono } from 'hono';
 import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
