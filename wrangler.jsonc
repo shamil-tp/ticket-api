@@ -1,19 +1,20 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ticket-api",
-  "main": "src/index.js",
-  "compatibility_date": "2026-01-01",
-  "observability": {
-    "enabled": true
-  },
-  "vars": {
-    "PUBLIC_SITE_URL": "https://shamiltp.me"
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "shamiltp-tickets",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
-    }
-  ]
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ticket-api",
+	"main": "src/index.js",
+	"compatibility_date": "2026-01-01",
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"PUBLIC_SITE_URL": "https://shamiltp.me"
+	},
+	"d1_databases": [
+		{
+			"binding": "shamiltp_tickets",
+			"database_name": "shamiltp-tickets",
+			"database_id": "4697cacc-dd43-46d5-9515-7e976818abc1",
+			"remote": true
+		}
+	]
 }
