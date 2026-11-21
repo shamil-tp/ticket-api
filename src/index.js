@@ -600,6 +600,9 @@ app.post('/api/tickets/:ticketId/admin-reply', adminReplyLimiter, async (c) => {
 });
 
 // Optional health check endpoint
-app.get('/api/health', (c) => c.json({ ok: true, runtime: 'cloudflare-workers-d1' }));
+// Health check endpoints (root + /api/health)
+app.get('/', (c) => c.json({ ok: true, service: 'shamiltp-ticket-api', runtime: 'cloudflare-workers-d1' }));
+app.get('/api/health', (c) => c.json({ ok: true, service: 'shamiltp-ticket-api', runtime: 'cloudflare-workers-d1' }));
+// app.get('/api/health', (c) => c.json({ ok: true, runtime: 'cloudflare-workers-d1' }));
 
 export default app;
