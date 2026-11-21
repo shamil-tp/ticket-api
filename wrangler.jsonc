@@ -11,7 +11,7 @@
 	},
 	"d1_databases": [
 		{
-			"binding": "shamiltp_tickets",
+			"binding": "DB",
 			"database_name": "shamiltp-tickets",
 			"database_id": "4697cacc-dd43-46d5-9515-7e976818abc1",
 			"remote": true
