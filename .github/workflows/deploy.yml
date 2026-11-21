@@ -20,8 +20,11 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Install dependencies
-        run: npm install --omit=dev --no-package-lock
+        run: bun install
 
       - name: Deploy Worker with Wrangler
         uses: cloudflare/wrangler-action@v3
