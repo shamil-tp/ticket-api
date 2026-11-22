@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+import { renderTicketCardPng } from './card.js';
 import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 
@@ -596,6 +597,37 @@ app.post('/api/tickets/:ticketId/admin-reply', adminReplyLimiter, async (c) => {
   } catch (err) {
     console.error('[POST /api/tickets/:ticketId/admin-reply] Error:', err);
     return c.json({ error: 'Internal server error' }, 500);
+  }
+});
+
+app.get('/api/tickets/:token/card.png', readTicketLimiter, async (c) => {
+  try {
+    const token = c.req.param('token');
+    if (!/^[a-f0-9]{32}$/i.test(token)) {
+      return c.json({ error: 'Ticket pass not found' }, 404);
+    }
+
+    const ticket = await c.env.DB.prepare(
+      `SELECT ticket_id, status, visitor_name, masked_email, masked_phone, submitted_at
+       FROM tickets WHERE access_token = ? LIMIT 1`
+    )
+      .bind(token.toLowerCase())
+      .first();
+
+    if (!ticket) return c.json({ error: 'Ticket pass not found' }, 404);
+
+    const baseUrl = (c.env.PUBLIC_SITE_URL || 'https://shamiltp.me').replace(/\/$/, '');
+    const pngBytes = await renderTicketCardPng(ticket, `${baseUrl}/t/${token.toLowerCase()}`);
+
+    return new Response(pngBytes, {
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, max-age=300',
+      },
+    });
+  } catch (err) {
+    console.error('[GET /api/tickets/:token/card.png] Error:', err);
+    return c.json({ error: 'Failed to render card PNG' }, 500);
   }
 });
 
