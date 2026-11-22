@@ -222,6 +222,7 @@ app.use(
       'https://shamiltp.me',
       'https://www.shamiltp.me',
       'https://shamiltp.life',
+      'https://shamil-tp.github.io',
       'http://localhost:3000',
     ],
     allowMethods: ['GET', 'POST', 'OPTIONS'],
