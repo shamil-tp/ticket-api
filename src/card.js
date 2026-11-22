@@ -8,7 +8,7 @@
  */
 
 import { Resvg, initWasm } from '@resvg/resvg-wasm';
-import resvgWasm from '@resvg/resvg-wasm/index_bg.wasm';
+import resvgWasm from '../node_modules/@resvg/resvg-wasm/index_bg.wasm';
 
 const FONT_URL =
   'https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono@v2.304/fonts/ttf/JetBrainsMono-Bold.ttf';
